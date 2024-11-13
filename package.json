@@ -1,0 +1,23 @@
+{
+  "name": "nodestart",
+  "version": "1.0.0",
+  "description": "An example of a simple node.js project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "max",
+    "er",
+    "sej"
+  ],
+  "author": "Heinz K",
+  "type": "module",
+  "license": "ISC",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.46.1",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "node": "^23.2.0"
+  }
+}
