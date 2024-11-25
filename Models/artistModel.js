@@ -1,13 +1,14 @@
 import { supabase } from '../Config/config.js'
 
-export class songModel {
+export class artistModel {
 	/**
 	 * Get All Records
 	 * @returns array
 	 */
 	static getAllRecords = async () => {
 		try {
-			const { data, error } = await supabase.from('songs').select('title')
+			const { data, error } = await supabase.from('artists')
+				.select('name')
 			
 			if(error) {
 				throw new error
@@ -26,7 +27,10 @@ export class songModel {
 	 */
 	static getRecordById = async id => {
 		try {
-			const { data, error } = await supabase.from('songs').select('title').eq('id', id).single()
+			const { data, error } = await supabase
+				.from('artists')
+				.select('name')
+				.eq('id', id).single()
 			
 			if(error) {
 				throw new error
@@ -47,12 +51,11 @@ export class songModel {
 	static createRecord = async formdata => {
 		try {
 			const { data, error } = await supabase
-			.from('songs')
+			.from('artists')
 			.insert([{
-				title: formdata.title,
-				content: formdata.content,
-				lyrics: formdata.lyrics,
-				artist_id: formdata.artist_id
+				name: formdata.name,
+				description: formdata.description,
+				image: formdata.image
 			}])
  
 			if(error) {
@@ -71,12 +74,11 @@ export class songModel {
 
 		try {
 			const { data, error } = await supabase
-				.from('songs')
+				.from('artists')
 				.update([{
-					title: formdata.title,
-					content: formdata.content,
-					lyrics: formdata.lyrics,
-					artist_id: formdata.artist_id	
+					name: formdata.name,
+					description: formdata.description,
+					image: formdata.image
 				}])
 				.eq('id', formdata.id)
 				.select()
@@ -96,7 +98,7 @@ export class songModel {
 	static deleteRecord = async formdata => {
 		try {
 			const { data, error } = await supabase
-				.from('songs')
+				.from('artists')
 				.delete()
 				.eq('id', formdata.id)
 
